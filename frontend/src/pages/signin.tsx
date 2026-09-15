@@ -8,12 +8,14 @@ import {
   Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 const Signin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+const navigate = useNavigate();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -23,13 +25,32 @@ const Signin = () => {
     });
   };
 
-  const handleSubmit = (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-    console.log("Login Data:", formData);
-  };
+  try {
+    const response =
+      await api.post(
+        "/auth/signin",
+        formData
+      );
+
+    console.log(response.data);
+
+    localStorage.setItem(
+      "token",
+      response.data.token
+    );
+
+    navigate("/profile");
+  } catch (error) {
+    console.error(error);
+
+    alert("Invalid Credentials");
+  }
+};
 
   return (
     <Container maxWidth="sm">

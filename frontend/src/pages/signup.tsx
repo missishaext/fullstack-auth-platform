@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { validateSignup } from "../utils/validation";
-
+import api from "../services/api";
 const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -31,24 +31,36 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-    const validationErrors =
-      validateSignup(formData);
+  const validationErrors =
+    validateSignup(formData);
 
-    if (
-      Object.keys(validationErrors).length > 0
-    ) {
-      setErrors(validationErrors);
-      return;
-    }
+  if (
+    Object.keys(validationErrors).length > 0
+  ) {
+    setErrors(validationErrors);
+    return;
+  }
 
-    console.log("Signup Data:", formData);
-  };
+  try {
+    const response =
+      await api.post(
+        "/auth/signup",
+        formData
+      );
 
+    console.log(response.data);
+
+    alert("Signup Successful!");
+  } catch (error) {
+    console.error(error);
+    alert("Signup Failed");
+  }
+};
   return (
     <Container maxWidth="sm">
       <Paper
