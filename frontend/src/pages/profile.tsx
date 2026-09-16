@@ -1,16 +1,54 @@
+import { useEffect, useState } from "react";
 import {
   Container,
   Paper,
   Typography,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const Profile = () => {
-  const user = {
-    firstName: "Isha",
-    lastName: "Sharma",
-    email: "isha@gmail.com",
-    role: "user",
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token =
+          localStorage.getItem("token");
+
+        const response = await api.get(
+          "/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setUser(response.data.data);
+      } catch (error) {
+        console.error(error);
+
+        alert("Failed to load profile");
+
+        navigate("/signin");
+      }
+    };
+
+    fetchProfile();
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
   };
 
   return (
@@ -49,6 +87,7 @@ const Profile = () => {
           variant="outlined"
           color="error"
           sx={{ mt: 3 }}
+          onClick={handleLogout}
         >
           Logout
         </Button>

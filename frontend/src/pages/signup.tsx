@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { validateSignup } from "../utils/validation";
 import api from "../services/api";
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -32,35 +33,47 @@ const Signup = () => {
   };
 
   const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault();
+    e: React.FormEvent
+  ) => {
+    e.preventDefault();
 
-  const validationErrors =
-    validateSignup(formData);
+    const validationErrors =
+      validateSignup(formData);
 
-  if (
-    Object.keys(validationErrors).length > 0
-  ) {
-    setErrors(validationErrors);
-    return;
-  }
+    if (
+      Object.keys(validationErrors).length > 0
+    ) {
+      setErrors(validationErrors);
+      return;
+    }
 
-  try {
-    const response =
-      await api.post(
+    try {
+      const response = await api.post(
         "/auth/signup",
         formData
       );
 
-    console.log(response.data);
+      console.log(response.data);
 
-    alert("Signup Successful!");
-  } catch (error) {
-    console.error(error);
-    alert("Signup Failed");
-  }
-};
+      alert("Signup Successful!");
+    } catch (error: any) {
+      console.error(error);
+
+      if (
+        error?.response?.data?.error?.fields
+      ) {
+        console.log(
+          error.response.data.error.fields
+        );
+      }
+
+      alert(
+        error?.response?.data?.message ||
+          "Signup Failed"
+      );
+    }
+  };
+
   return (
     <Container maxWidth="sm">
       <Paper

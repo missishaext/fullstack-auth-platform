@@ -7,15 +7,17 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
+
 const Signin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -26,31 +28,35 @@ const navigate = useNavigate();
   };
 
   const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault();
+    e: React.FormEvent
+  ) => {
+    e.preventDefault();
 
-  try {
-    const response =
-      await api.post(
+    try {
+      const response = await api.post(
         "/auth/signin",
         formData
       );
 
-    console.log(response.data);
+      console.log(response.data);
 
-    localStorage.setItem(
-      "token",
-      response.data.token
-    );
+      localStorage.setItem(
+        "token",
+        response.data.data.token
+      );
 
-    navigate("/profile");
-  } catch (error) {
-    console.error(error);
+      alert("Login Successful!");
 
-    alert("Invalid Credentials");
-  }
-};
+      navigate("/profile");
+    } catch (error: any) {
+      console.error(error);
+
+      alert(
+        error?.response?.data?.message ||
+          "Invalid Credentials"
+      );
+    }
+  };
 
   return (
     <Container maxWidth="sm">
@@ -102,17 +108,18 @@ const navigate = useNavigate();
           >
             Login
           </Button>
+
           <Typography
-  sx={{
-    mt: 2,
-    textAlign: "center",
-  }}
->
-  Don't have an account?{" "}
-  <Link to="/signup">
-    Sign Up
-  </Link>
-</Typography>
+            sx={{
+              mt: 2,
+              textAlign: "center",
+            }}
+          >
+            Don't have an account?{" "}
+            <Link to="/signup">
+              Sign Up
+            </Link>
+          </Typography>
         </Box>
       </Paper>
     </Container>
