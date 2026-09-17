@@ -10,3 +10,5 @@ frontend/.env
 .devin/
 
 dist/
+frontend/
+frontend/readme.md/
