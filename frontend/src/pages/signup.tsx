@@ -6,12 +6,16 @@ import {
   Typography,
   Button,
   Box,
+  Avatar,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { Link, useNavigate } from "react-router-dom";
 import { validateSignup } from "../utils/validation";
 import api from "../services/api";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,6 +60,8 @@ const Signup = () => {
       console.log(response.data);
 
       alert("Signup Successful!");
+
+      navigate("/signin");
     } catch (error: any) {
       console.error(error);
 
@@ -75,96 +81,146 @@ const Signup = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper
-        elevation={3}
-        sx={{
-          p: 4,
-          mt: 8,
-          borderRadius: 3,
-        }}
-      >
-        <Typography
-          variant="h4"
-          align="center"
-          sx={{ mb: 3 }}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "linear-gradient(135deg,  #ead466 0%, #764ba2 100%)",
+        px: 2,
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper
+          elevation={10}
+          sx={{
+            p: 5,
+            borderRadius: 4,
+          }}
         >
-          Create Account
-        </Typography>
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            fullWidth
-            label="First Name"
-            name="firstName"
-            margin="normal"
-            value={formData.firstName}
-            onChange={handleChange}
-            error={!!errors.firstName}
-            helperText={errors.firstName}
-          />
-
-          <TextField
-            fullWidth
-            label="Last Name"
-            name="lastName"
-            margin="normal"
-            value={formData.lastName}
-            onChange={handleChange}
-            error={!!errors.lastName}
-            helperText={errors.lastName}
-          />
-
-          <TextField
-            fullWidth
-            label="Email"
-            name="email"
-            type="email"
-            margin="normal"
-            value={formData.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
-          />
-
-          <TextField
-            fullWidth
-            label="Password"
-            name="password"
-            type="password"
-            margin="normal"
-            value={formData.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{ mt: 3 }}
-          >
-            Sign Up
-          </Button>
-
-          <Typography
+          <Box
             sx={{
-              mt: 2,
-              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mb: 3,
             }}
           >
-            Already have an account?{" "}
-            <Link to="/signin">
-              Login
-            </Link>
-          </Typography>
-        </Box>
-      </Paper>
-    </Container>
+            <Avatar
+              sx={{
+                bgcolor: "success.main",
+                width: 70,
+                height: 70,
+                mb: 2,
+              }}
+            >
+              <PersonAddAlt1Icon fontSize="large" />
+            </Avatar>
+
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 700,
+                textAlign: "center",
+              }}
+            >
+              Create Account
+            </Typography>
+
+            <Typography
+              color="text.secondary"
+              sx={{
+                mt: 1,
+                textAlign: "center",
+              }}
+            >
+              Join Learning Management Portal
+            </Typography>
+          </Box>
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              fullWidth
+              label="First Name"
+              name="firstName"
+              margin="normal"
+              value={formData.firstName}
+              onChange={handleChange}
+              error={!!errors.firstName}
+              helperText={errors.firstName}
+            />
+
+            <TextField
+              fullWidth
+              label="Last Name"
+              name="lastName"
+              margin="normal"
+              value={formData.lastName}
+              onChange={handleChange}
+              error={!!errors.lastName}
+              helperText={errors.lastName}
+            />
+
+            <TextField
+              fullWidth
+              label="Email Address"
+              name="email"
+              type="email"
+              margin="normal"
+              value={formData.email}
+              onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              margin="normal"
+              value={formData.password}
+              onChange={handleChange}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              size="large"
+              sx={{
+                mt: 3,
+                py: 1.5,
+                borderRadius: 2,
+                fontWeight: 700,
+                textTransform: "none",
+              }}
+            >
+              Create Account
+            </Button>
+
+            <Typography
+              sx={{
+                mt: 3,
+                textAlign: "center",
+              }}
+            >
+              Already have an account?{" "}
+              <Link to="/signin">
+                Login
+              </Link>
+            </Typography>
+          </Box>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 

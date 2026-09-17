@@ -1,2 +1,9 @@
-node_modules/
-.env/
+backend/.env
+backend/node_modules/
+backend/
+frontend/node_modules/
+frontend/assets/
+frontend/components/
+frontend/types/
+frontend/.env
+frontend/routes/

@@ -6,7 +6,9 @@ import {
   Typography,
   Button,
   Box,
+  Avatar,
 } from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
@@ -59,70 +61,113 @@ const Signin = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper
-        elevation={3}
-        sx={{
-          p: 4,
-          mt: 8,
-          borderRadius: 3,
-        }}
-      >
-        <Typography
-          variant="h4"
-          align="center"
-          sx={{ mb: 3 }}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "linear-gradient(135deg,  #ead466 0%, #764ba2 100%)",
+        px: 2,
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper
+          elevation={10}
+          sx={{
+            p: 5,
+            borderRadius: 4,
+          }}
         >
-          Login
-        </Typography>
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            fullWidth
-            label="Email"
-            name="email"
-            type="email"
-            margin="normal"
-            value={formData.email}
-            onChange={handleChange}
-          />
-
-          <TextField
-            fullWidth
-            label="Password"
-            name="password"
-            type="password"
-            margin="normal"
-            value={formData.password}
-            onChange={handleChange}
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{ mt: 3 }}
-          >
-            Login
-          </Button>
-
-          <Typography
+          <Box
             sx={{
-              mt: 2,
-              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mb: 3,
             }}
           >
-            Don't have an account?{" "}
-            <Link to="/signup">
-              Sign Up
-            </Link>
-          </Typography>
-        </Box>
-      </Paper>
-    </Container>
+            <Avatar
+              sx={{
+                bgcolor: "primary.main",
+                width: 70,
+                height: 70,
+                mb: 2,
+              }}
+            >
+              <LockOutlinedIcon fontSize="large" />
+            </Avatar>
+
+           <Typography
+  variant="h4"
+  sx={{ fontWeight: "bold" }}
+>
+  Welcome Back
+</Typography>
+
+            <Typography
+              color="text.secondary"
+              sx={{ mt: 1 }}
+            >
+              Sign in to your account
+            </Typography>
+          </Box>
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              fullWidth
+              label="Email Address"
+              name="email"
+              type="email"
+              margin="normal"
+              value={formData.email}
+              onChange={handleChange}
+            />
+
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              margin="normal"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              size="large"
+              sx={{
+                mt: 3,
+                py: 1.5,
+                borderRadius: 2,
+                fontWeight: "bold",
+              }}
+            >
+              Login
+            </Button>
+
+            <Typography
+              sx={{
+                mt: 3,
+                textAlign: "center",
+              }}
+            >
+              Don't have an account?{" "}
+              <Link to="/signup">
+                Sign Up
+              </Link>
+            </Typography>
+          </Box>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 
