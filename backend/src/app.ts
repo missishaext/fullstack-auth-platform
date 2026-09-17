@@ -6,17 +6,12 @@ import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import {requestLogger} from "./middleware/request-logger.middleware";
 
-/*
-  Express body-parser errors me status aur type
-  properties ho sakti hain.
-*/
 type ExpressBodyError = Error & {
   status?: number;
   type?: string;
 };
 
 const app = express();
-
 app.use(helmet());
 app.use(requestLogger);
 
