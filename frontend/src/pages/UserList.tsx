@@ -19,6 +19,7 @@ import {
   Button,
 } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 interface User {
@@ -30,6 +31,8 @@ interface User {
 }
 
 const UsersList = () => {
+  const navigate = useNavigate();
+
   const [users, setUsers] = useState<User[]>([]);
   const [roleFilter, setRoleFilter] =
     useState("ALL");
@@ -100,6 +103,18 @@ const UsersList = () => {
             borderRadius: 4,
           }}
         >
+          <Button
+            variant="outlined"
+            onClick={() => navigate("/profile")}
+            sx={{
+              mb: 3,
+              borderRadius: 2,
+              textTransform: "none",
+            }}
+          >
+            ← Back to Profile
+          </Button>
+
           <Box
             sx={{
               display: "flex",

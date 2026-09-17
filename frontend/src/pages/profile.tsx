@@ -63,7 +63,7 @@ const Profile = () => {
         alignItems: "center",
         justifyContent: "center",
         background:
-          "linear-gradient(135deg,  #ead466 0%, #764ba2100%)",
+          "linear-gradient(135deg,  #ead466 0%, #764ba2 100%)",
         px: 2,
       }}
     >

@@ -1,75 +1,332 @@
-# React + TypeScript + Vite
+# Full-Stack Authentication Platform - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive frontend application built using React, TypeScript, Vite, Material UI, React Router DOM, and Axios.
 
-Currently, two official plugins are available:
+The application provides user authentication, profile management, role-based user interfaces, and admin user management through seamless integration with backend APIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Authentication
 
-## Expanding the ESLint configuration
+- User Signup
+- User Signin
+- JWT Token Storage
+- Logout Functionality
+- Protected Pages
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Profile Management
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- View Logged-in User Details
+- Display User Role
+- Secure Profile Access
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Admin Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Manage Users Page
+- View All Registered Users
+- Filter Users by Role
+- Search Users by Email
+- Navigate Between Profile and User Management
 
+## User Interface
+
+- Responsive Design
+- Material UI Components
+- Avatar-Based Profile UI
+- Modern Card Layouts
+- Gradient Backgrounds
+- Mobile Friendly Screens
+
+---
+
+# Technology Stack
+
+## Frontend Framework
+
+- React
+- TypeScript
+- Vite
+
+## UI Library
+
+- Material UI (MUI)
+- Material Icons
+
+## Routing
+
+- React Router DOM
+
+## API Integration
+
+- Axios
+
+## State Management
+
+- React Hooks
+- useState
+- useEffect
+
+---
+
+# Project Structure
+
+```text
+frontend/
+│
+├── public/
+│
+├── src/
+│   │
+│   ├── pages/
+│   │   ├── Signup.tsx
+│   │   ├── Signin.tsx
+│   │   ├── Profile.tsx
+│   │   └── UsersList.tsx
+│   │
+│   ├── services/
+│   │   └── api.ts
+│   │
+│   ├── utils/
+│   │   └── validation.ts
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+│
+├── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Application Flow
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+Signup
+   ↓
+Signin
+   ↓
+Store JWT Token
+   ↓
+Profile Page
+   ↓
+Admin User
+   ↓
+Manage Users
+   ↓
+Users List
 ```
+
+---
+
+# Pages
+
+## Signup Page
+
+Features:
+
+- First Name
+- Last Name
+- Email
+- Password
+- Validation Messages
+- Backend Integration
+
+## Signin Page
+
+Features:
+
+- User Authentication
+- JWT Token Storage
+- Error Handling
+- Redirect to Profile
+
+## Profile Page
+
+Features:
+
+- User Information
+- Role Display
+- Logout Button
+
+Admin Users:
+
+- Manage Users Button
+
+## Users List Page
+
+Admin Only
+
+Features:
+
+- List All Users
+- Role Filter
+- Email Search
+- Back to Profile Navigation
+- User Count Display
+
+---
+
+# Installation
+
+Clone Repository:
+
+```bash
+git clone https://github.com/missishaext/fullstack-auth-platform.git
+```
+
+Navigate to frontend folder:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
+
+```bash
+npm run dev
+```
+
+Application URL:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# Build Project
+
+Create production build:
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+# Environment Variables
+
+Create `.env` file:
+
+```env
+VITE_API_BASE_URL=http://localhost:5000
+```
+
+---
+
+# API Integration
+
+Frontend communicates with backend APIs using Axios.
+
+### Signup
+
+```http
+POST /auth/signup
+```
+
+### Signin
+
+```http
+POST /auth/signin
+```
+
+### Profile
+
+```http
+GET /users/profile
+```
+
+### Users List
+
+```http
+GET /users/list
+```
+
+---
+
+# Validation
+
+## Signup Validation
+
+- First Name Required
+- Last Name Required
+- Valid Email Format
+- Password Required
+- Strong Password Validation
+
+## Signin Validation
+
+- Email Required
+- Password Required
+
+---
+
+# Security
+
+- JWT Token Authentication
+- Protected Routes
+- Authorization Headers
+- Role-Based UI Rendering
+- Secure Logout
+
+---
+
+# User Roles
+
+## USER
+
+Can:
+
+- Sign Up
+- Sign In
+- View Profile
+- Logout
+
+Cannot:
+
+- Access Users List
+
+## ADMIN
+
+Can:
+
+- Sign Up
+- Sign In
+- View Profile
+- Access Users List
+- Search Users
+- Filter Users
+- Logout
+
+---
+
+# Future Enhancements
+
+- Dark Mode
+- Profile Editing
+- Forgot Password
+- Pagination Controls
+- Dashboard Analytics
+- User Activity Tracking
+
+---
+
+# Author
+
+**Isha**
+Management Trainee
