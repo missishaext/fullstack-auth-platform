@@ -2,42 +2,43 @@
 
 A modern and responsive frontend application built using React, TypeScript, Vite, Material UI, React Router DOM, and Axios.
 
-The application provides user authentication, profile management, role-based user interfaces, and admin user management through seamless integration with backend APIs.
+The application provides user authentication, profile management, role-based user interface rendering, and admin user-management functionality through integration with backend REST APIs.
 
 ---
 
-# Features
+# Project Features
 
 ## Authentication
 
 - User Signup
 - User Signin
 - JWT Token Storage
+- Protected Routes
 - Logout Functionality
-- Protected Pages
 
 ## Profile Management
 
-- View Logged-in User Details
-- Display User Role
+- View User Profile
+- Display User Information
+- Role-Based Access Control
 - Secure Profile Access
 
 ## Admin Features
 
 - Manage Users Page
-- View All Registered Users
+- View Registered Users
 - Filter Users by Role
 - Search Users by Email
-- Navigate Between Profile and User Management
+- Navigate Back to Profile
 
-## User Interface
+## UI Features
 
 - Responsive Design
 - Material UI Components
-- Avatar-Based Profile UI
-- Modern Card Layouts
-- Gradient Backgrounds
-- Mobile Friendly Screens
+- Avatar-Based Profile Interface
+- Modern Card-Based Layout
+- Mobile-Friendly Design
+- Professional User Experience
 
 ---
 
@@ -49,7 +50,7 @@ The application provides user authentication, profile management, role-based use
 - TypeScript
 - Vite
 
-## UI Library
+## UI Components
 
 - Material UI (MUI)
 - Material Icons
@@ -58,15 +59,15 @@ The application provides user authentication, profile management, role-based use
 
 - React Router DOM
 
-## API Integration
+## API Communication
 
 - Axios
 
 ## State Management
 
 - React Hooks
-- useState
-- useEffect
+  - useState
+  - useEffect
 
 ---
 
@@ -78,22 +79,22 @@ frontend/
 ├── public/
 │
 ├── src/
-│   │
-│   ├── pages/
-│   │   ├── Signup.tsx
-│   │   ├── Signin.tsx
-│   │   ├── Profile.tsx
-│   │   └── UsersList.tsx
-│   │
-│   ├── services/
-│   │   └── api.ts
-│   │
-│   ├── utils/
-│   │   └── validation.ts
-│   │
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
+│
+├── pages/
+│   ├── Signup.tsx
+│   ├── Signin.tsx
+│   ├── Profile.tsx
+│   └── UsersList.tsx
+│
+├── services/
+│   └── api.ts
+│
+├── utils/
+│   └── validation.ts
+│
+├── App.tsx
+├── main.tsx
+└── index.css
 │
 ├── package.json
 └── README.md
@@ -104,18 +105,18 @@ frontend/
 # Application Flow
 
 ```text
-Signup
-   ↓
-Signin
-   ↓
-Store JWT Token
-   ↓
+User Registration
+        ↓
+User Login
+        ↓
+JWT Token Stored
+        ↓
 Profile Page
-   ↓
+        ↓
 Admin User
-   ↓
+        ↓
 Manage Users
-   ↓
+        ↓
 Users List
 ```
 
@@ -131,8 +132,10 @@ Features:
 - Last Name
 - Email
 - Password
-- Validation Messages
-- Backend Integration
+- Client-Side Validation
+- Backend API Integration
+
+---
 
 ## Signin Page
 
@@ -143,17 +146,21 @@ Features:
 - Error Handling
 - Redirect to Profile
 
+---
+
 ## Profile Page
 
 Features:
 
-- User Information
-- Role Display
-- Logout Button
+- Display User Information
+- User Role Display
+- Logout Functionality
 
 Admin Users:
 
 - Manage Users Button
+
+---
 
 ## Users List Page
 
@@ -161,11 +168,11 @@ Admin Only
 
 Features:
 
-- List All Users
-- Role Filter
-- Email Search
-- Back to Profile Navigation
+- View Registered Users
+- Search Users by Email
+- Filter Users by Role
 - User Count Display
+- Back to Profile Navigation
 
 ---
 
@@ -177,19 +184,19 @@ Clone Repository:
 git clone https://github.com/missishaext/fullstack-auth-platform.git
 ```
 
-Navigate to frontend folder:
+Navigate to frontend directory:
 
 ```bash
 cd frontend
 ```
 
-Install dependencies:
+Install Dependencies:
 
 ```bash
 npm install
 ```
 
-Run development server:
+Start Development Server:
 
 ```bash
 npm run dev
@@ -205,13 +212,13 @@ http://localhost:5173
 
 # Build Project
 
-Create production build:
+Create Production Build:
 
 ```bash
 npm run build
 ```
 
-Preview production build:
+Preview Production Build:
 
 ```bash
 npm run preview
@@ -221,7 +228,7 @@ npm run preview
 
 # Environment Variables
 
-Create `.env` file:
+Create a `.env` file:
 
 ```env
 VITE_API_BASE_URL=http://localhost:5000
@@ -231,7 +238,7 @@ VITE_API_BASE_URL=http://localhost:5000
 
 # API Integration
 
-Frontend communicates with backend APIs using Axios.
+The frontend communicates with backend APIs using Axios.
 
 ### Signup
 
@@ -278,11 +285,11 @@ GET /users/list
 
 # Security
 
-- JWT Token Authentication
+- JWT-Based Authentication
 - Protected Routes
-- Authorization Headers
-- Role-Based UI Rendering
-- Secure Logout
+- Authorization Header Support
+- Role-Based User Access
+- Secure Logout Functionality
 
 ---
 
@@ -290,43 +297,48 @@ GET /users/list
 
 ## USER
 
-Can:
+Permissions:
 
 - Sign Up
 - Sign In
 - View Profile
 - Logout
 
-Cannot:
+Restrictions:
 
-- Access Users List
+- Cannot Access Users List
+
+---
 
 ## ADMIN
 
-Can:
+Permissions:
 
 - Sign Up
 - Sign In
 - View Profile
-- Access Users List
-- Search Users
+- Manage Users
 - Filter Users
+- Search Users
 - Logout
 
 ---
 
 # Future Enhancements
 
+- Forgot Password
+- Reset Password
 - Dark Mode
 - Profile Editing
-- Forgot Password
 - Pagination Controls
 - Dashboard Analytics
-- User Activity Tracking
+- Real-Time Notifications
 
 ---
 
 # Author
 
-**Isha**
+**Isha**  
 Management Trainee
+
+---
