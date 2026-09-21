@@ -7,3 +7,17 @@ frontend/components/
 frontend/types/
 frontend/.env
 frontend/routes/
+backend/node_modules/
+frontend/node_modules/
+
+backend/.env
+frontend/.env
+
+.agents/
+.claude/
+.cursor/
+.devin/
+
+dist/
+frontend/
+frontend/readme.md/
